@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { label: "Übersicht", href: "/" },
   { label: "Patienten", href: "/patients" },
-  { label: "Analyzer", href: "/analyzer" },
+  { label: "Analyzer", href: "/analyzer/start" },
   { label: "Einstellungen", href: "/settings" },
 ];
 
@@ -21,7 +21,7 @@ export default function NavLinks() {
           item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
         const base =
-          "px-6 py-2 flex items-center justify-center rounded-full transition-colors";
+          "px-8 py-3 flex items-center justify-center rounded-full transition-colors";
         const activeClasses =
           "bg-[var(--color-primary)] text-[var(--color-background)]"; // primary background, light text
         const inactiveClasses =
