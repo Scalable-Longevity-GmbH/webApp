@@ -4,7 +4,7 @@ import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, ArrowUpRight } from "lucide-react";
-import { exampleUsers as users, User as ExampleUser } from "../../example-user";
+import { exampleUsers as users, User as ExampleUser } from "../example-user";
 
 function getBmi(user: ExampleUser) {
   if (typeof user.bmi === "number") return user.bmi.toFixed(1);
@@ -37,12 +37,12 @@ export default function Start() {
           className="peer rounded-full bg-card px-8 h-16 w-full focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Suche Patienten"
         />
-        <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-[var(--font-secondary)] peer-focus:text-primary" />
+        <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-font-secondary peer-focus:text-primary" />
       </div>
 
       <div className="w-full max-w-md mt-4 grid gap-3">
         {filtered.length === 0 && query !== "" && (
-          <div className="text-sm text-[var(--font-secondary)]">
+          <div className="text-sm text-font-secondary">
             Keine Patienten gefunden
           </div>
         )}
@@ -50,7 +50,7 @@ export default function Start() {
         {filtered.map((user: ExampleUser) => (
           <Link
             key={user.name}
-            href="/analyzer/patient-view"
+            href={`/analyzer/patient/${encodeURIComponent(user.name)}`}
             className="relative flex flex-col bg-card rounded-2xl shadow-sm px-5 py-4 hover:shadow-md transition-shadow cursor-pointer"
           >
             {/* Top row: avatar + name + bio age */}
@@ -64,7 +64,7 @@ export default function Start() {
                   className="w-12 h-12 rounded-full object-cover"
                 />
               ) : (
-                <div className="w-12 h-12 rounded-full bg-[var(--card-border)] flex items-center justify-center text-sm font-medium text-[var(--font-primary)]">
+                <div className="w-12 h-12 rounded-full bg-card-border flex items-center justify-center text-sm font-medium text-font-primary">
                   {user.name
                     ? user.name
                         .split(" ")
@@ -77,42 +77,35 @@ export default function Start() {
               )}
 
               <div className="flex flex-col">
-                <span className="font-medium text-[var(--font-primary)]">
+                <span className="font-medium text-font-primary">
                   {user.name}
                 </span>
-                <span className="text-xs text-[var(--font-secondary)]">
+                <span className="text-xs text-font-secondary">
                   {getBioAge(user)}
                 </span>
               </div>
             </div>
 
             {/* Info rows */}
-            <div className="space-y-1 pr-12">
+            <div className="flex w-full flex-col space-y-1">
               <div className="flex justify-between text-sm">
-                <span className="text-[var(--font-primary)]">Geschlecht:</span>
-                <span className="text-[var(--font-primary)]">
-                  {user.gender || "—"}
-                </span>
+                <span className="text-font-primary">Geschlecht:</span>
+                <span className="text-font-primary">{user.gender || "—"}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-[var(--font-primary)]">
-                  Biologisches Alter:
-                </span>
-                <span className="text-[var(--font-primary)]">
-                  {getBioAge(user)}
-                </span>
+                <span className="text-font-primary">Biologisches Alter:</span>
+                <span className="text-font-primary">{getBioAge(user)}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-font-primary">BMI:</span>
-                <span className="text-[var(--font-primary)]">
-                  {getBmi(user)}
-                </span>
+                <span className="text-font-primary">{getBmi(user)}</span>
               </div>
             </div>
-
-            {/* Circular CTA bottom right */}
-            <div className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-[var(--color-primary)] flex items-center justify-center">
-              <ArrowUpRight className="h-5 w-5 text-[var(--color-background)]" />
+            <div className="flex w-full justify-end">
+              {/* Circular CTA bottom right */}
+              <div className="h-12 w-12 p-3 mt-5 rounded-full bg-primary flex items-center justify-center">
+                <ArrowUpRight className="text-card" />
+              </div>
             </div>
           </Link>
         ))}

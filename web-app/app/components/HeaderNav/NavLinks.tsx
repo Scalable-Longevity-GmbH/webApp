@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { label: "Übersicht", href: "/" },
   { label: "Patienten", href: "/patients" },
-  { label: "Analyzer", href: "/analyzer/start" },
+  { label: "Analyzer", href: "/analyzer" },
   { label: "Einstellungen", href: "/settings" },
 ];
 
