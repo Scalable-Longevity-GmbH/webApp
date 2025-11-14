@@ -28,7 +28,7 @@ export default function Start() {
   }, [query]);
 
   return (
-    <div className="w-full h-screen flex flex-col justify-start items-center gap-4 pt-28">
+    <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
       {/* Search bar */}
       <div className="relative w-full max-w-xl">
         <input
