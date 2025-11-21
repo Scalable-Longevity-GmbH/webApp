@@ -111,6 +111,28 @@ function RingCard({ label, value }: { label: string; value: number }) {
   const clamped = Math.max(0, Math.min(100, value));
   const offset = circumference * (1 - clamped / 100);
 
+  // choose colors by value
+  const getColorClasses = (v: number) => {
+    if (v < 33) {
+      return {
+        ring: "stroke-red-300",
+        text: "text-red-400",
+      };
+    }
+    if (v < 66) {
+      return {
+        ring: "stroke-orange-300",
+        text: "text-orange-400",
+      };
+    }
+    return {
+      ring: "stroke-primary", // your existing primary green
+      text: "text-primary",
+    };
+  };
+
+  const { ring, text } = getColorClasses(clamped);
+
   return (
     <div className="flex flex-col items-center">
       <div className="relative" style={{ width: size, height: size }}>
@@ -136,7 +158,7 @@ function RingCard({ label, value }: { label: string; value: number }) {
             cy={size / 2}
             r={radius}
             strokeWidth={strokeWidth}
-            className="stroke-primary"
+            className={ring}
             fill="none"
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -147,7 +169,7 @@ function RingCard({ label, value }: { label: string; value: number }) {
 
         {/* Percentage */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-2xl font-semibold text-font-primary">
+          <span className={`text-2xl font-semibold ${text}`}>
             {clamped}
             <span className="text-sm align-bottom">%</span>
           </span>
