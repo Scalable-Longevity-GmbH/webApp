@@ -31,7 +31,7 @@ export default async function ChronoBioPage({
   )}/scoring`;
 
   return (
-    <div className="h-full bg-background flex items-center justify-center px-4 pt-24 pb-12">
+    <div className="min-h-90vh bg-background flex items-center justify-center px-4 pt-24 pb-12">
       <div className="flex flex-col items-center text-center max-w-xl w-full">
         {/* Headline */}
         <h1 className="text-xl md:text-2xl font-semibold text-font-primary mb-16">

@@ -22,7 +22,7 @@ export default function HabitBuilderPage() {
   };
 
   return (
-    <div className="h-full bg-background flex items-start justify-center px-4 pb-16">
+    <div className="min-h-90vh bg-background flex items-start justify-center px-4 pb-16">
       <div className="w-full max-w-5xl flex flex-col items-center pt-5">
         {/* Heading */}
         <h1 className="text-xl md:text-2xl font-semibold text-font-primary">
