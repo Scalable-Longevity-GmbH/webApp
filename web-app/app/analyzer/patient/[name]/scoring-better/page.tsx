@@ -74,8 +74,8 @@ export default function PlanPage() {
 
         <div className="mt-14 w-full max-w-2xl">
           <div className="flex justify-between text-[11px] text-font-secondary mb-2">
-            <span>niedrige Intensität</span>
-            <span>hohe Intensität</span>
+            <span>niedriger Aufwand</span>
+            <span>hoher Aufwand</span>
           </div>
 
           <input

@@ -129,7 +129,7 @@ export default function LifePathPage() {
     xaxis: {
       type: "numeric",
       title: {
-        text: "Alter (Jahre)",
+        text: "Lebensspanne (Jahre)",
         style: {
           color: "var(--font-secondary)",
           fontSize: "12px",
@@ -145,7 +145,7 @@ export default function LifePathPage() {
     },
     yaxis: {
       title: {
-        text: "Biologisches Alter",
+        text: "Chrono/Bio Age Difference (Jahre)",
         style: {
           color: "var(--font-secondary)",
           fontSize: "12px",
@@ -209,22 +209,35 @@ export default function LifePathPage() {
 
   return (
     <div className="min-h-[90vh] w-full mx-30 bg-background flex flex-col items-center justify-center">
-      <div className="w-full">
-        <h1 className="text-xl md:text-2xl font-semibold text-font-primary mb-2">
+      <div className="w-full flex flex-col items-center justify-center">
+        <h1 className="text-xl text-center md:text-2xl font-semibold text-font-primary mb-2">
           LifePath Analyzer
         </h1>
-        <p className="text-xs md:text-sm text-font-secondary mb-8 max-w-xl">
+        <p className="text-xs text-center md:text-sm text-font-secondary mb-8 max-w-xl">
           Die Grafik zeigt rückblickend einen plausiblen Korridor deiner
           biologischen Entwicklung - und wie sich dein biologisches Alter
           zukünftig ohne Veränderungen vs. mit Plan entwickeln könnte.
         </p>
 
-        <div className="rounded-3xl bg-card border border-card-border px-4 py-6 md:px-6 md:py-8 shadow-sm">
+        <div className="rounded-3xl bg-card border border-card-border px-4 py-6 md:px-6 md:py-8 shadow-sm w-5xl">
           <ReactApexChart
             options={chartOptions}
             series={chartSeries}
             type="line"
             height={360}
+          />
+        </div>
+        <div className="mt-14 w-full max-w-2xl">
+          <div className="flex justify-between text-[11px] text-font-secondary mb-2">
+            <span>niedriger Aufwand</span>
+            <span>hoher Aufwand</span>
+          </div>
+
+          <input
+            type="range"
+            min={0}
+            max={100}
+            className="w-full accent-primary"
           />
         </div>
 
